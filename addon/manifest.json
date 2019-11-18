@@ -4,12 +4,12 @@
   "name": "Data Bodies",
   "version": "0.1",
 
-  "description": "Track your web usage and generate a beutiful diagram. ",
+  "description": "Track your web usage and generate a beautiful diagram. ",
 
   "icons": {
     "48": "icons/icon.svg",
     "96": "icons/icon.svg"
-  }
+  },
 
   "browser_action": {
     "default_icon": "icons/icon.svg",
@@ -19,7 +19,8 @@
 
   "content_scripts": [
     {
-      "js": ["content-scripts/background-script.js"]
+      "js": ["content-scripts/background-script.js"],
+      "matches": ["http://*/*"]
     }
   ]
 
