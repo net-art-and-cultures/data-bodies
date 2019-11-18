@@ -8,19 +8,19 @@
 
   "icons": {
     "48": "icons/icon.svg",
-    "96": "icons/icon.svg",
+    "96": "icons/icon.svg"
   },
 
   "browser_action": {
     "default_icon": "icons/icon.svg",
     "default_title": "Data Bodies",
-    "default_popup": "popup/index.html",
+    "default_popup": "popup/index.html"
   },
 
   "content_scripts": [
     {
       "js": ["content-scripts/background-script.js"],
-      "matches": ["*://*.mozilla.org/*"]
+      "matches": ["http://*/*"]
     }
   ]
 
