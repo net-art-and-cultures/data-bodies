@@ -1,0 +1,17 @@
+html, body {
+  width: 300px;
+  font-family: helvetica;
+  background-color: #f8f8f8;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+ text-decoration: none;
+}
+
+.logo {
+
+}
