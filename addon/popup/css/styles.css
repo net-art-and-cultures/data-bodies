@@ -1,17 +1,55 @@
-html, body {
-  width: 300px;
+body {
+  width: 350px;
+  height: 500px;
   font-family: helvetica;
   background-color: #f8f8f8;
+  padding: 0px;
+  margin: 0px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+
+.logo1{
+  position: absolute;
+  z-index: 2;
+  left: calc(50% - 125px)
+
+}
+
+.logo2{
+  position: absolute;
+  z-index: 1;
+  top: 50px;
 }
 
 .hidden {
   display: none;
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-around;
+
+}
+
 .button {
  text-decoration: none;
 }
 
-.logo {
+.previews {
+  display: flex;
+  justify-content: space-around;
+  background-color: #e6e7e8;
+}
 
+.preview {
+  width: 70px;
+  height: 80px;
+  background-color: #ffffff;
+  position: absolute;
 }
