@@ -1,23 +1,27 @@
 body {
   width: 350px;
-  height: 515px;
+  height: 490px;
   font-family: helvetica;
+  font-weight: bold;
   background-color: #f8f8f8;
   padding: 0px;
   margin: 0px;
 }
 
 .title {
+  letter-spacing: 2.5px;
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+  font-size: 14px;
 }
 
 
 .logo1{
   position: absolute;
   z-index: 2;
-  top: 13px;
-  left: calc(50% - 125px)
+  top: 85px;
+  left: calc(50% - 122px)
 }
 
 .logo2{
@@ -31,27 +35,30 @@ body {
 }
 
 .buttons {
+  margin-left: 50px;
+  margin-right: 50px;
   display: flex;
   justify-content: space-around;
-  margin-top: 255px;
-
+  margin-top: 225px;
 }
 
 .button {
  text-decoration: none;
  width: 75px;
- height: 33px;
+ height: 28px;
  background-color: #6f7ab6;
  color: white;
- text-align: center;
  font-size: 20px;
  border-radius: 10px;
+ text-align: center;
+ padding-top: 6px;
+ letter-spacing: 0.5px;
 }
 
 .previews {
   display: flex;
   justify-content: space-around;
-  margin-top: 25px;
+  margin-top: 30px;
   margin-left: 10px;
   margin-right: 10px;
 }
