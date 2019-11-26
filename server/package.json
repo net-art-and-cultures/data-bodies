@@ -1,0 +1,23 @@
+{
+  "name": "data-bodies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/net-art-and-cultures/data-bodies.git"
+  },
+  "author": "",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/net-art-and-cultures/data-bodies/issues"
+  },
+  "homepage": "https://github.com/net-art-and-cultures/data-bodies#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
