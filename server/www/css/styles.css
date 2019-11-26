@@ -50,13 +50,15 @@ h4 {
 
 .container{
   width: 1280px;
-  min-height: 680px;
+  /* min-height: 680px; */
+  height:1350px;
   background: #FFF;
-  margin: 100px auto 0;
+  margin: 100px 100px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .box{
   position: relative;
   width: 400px;
@@ -66,6 +68,7 @@ h4 {
   display: inline-block;
   background-color: #FFD76C;
 }
+
 .imgBox{
   width: 400px;
   height: 400px;
@@ -74,19 +77,23 @@ h4 {
   position: relative;
   overflow: hidden;
 }
+
 .imgBox>img{
   max-width: 100%;
   transition: transform 2s;
 }
+
 .box:hover .imgBox img
 {
   transform: scale(1.2);
 }
+
 .details{
-  margin: 10px;
+  margin: 2px;
   transform: scaleY(0);
   transition: transform .5s;
 }
+
 .box:hover .details
 {
   transform: scaleY(1);
@@ -95,8 +102,8 @@ h4 {
 .details .content h2
 {
   text-align: center;
-  margin: 0px;
-  padding: 0px;
+  margin: 10px;
+  padding:0px;
   font-size: 15px;
   color: black;
   font-family: 'helvetica', serif;
