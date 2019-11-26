@@ -1,6 +1,7 @@
 
 const movePos = []
 const clickPos = []
+const recordWidth = window.innerWidth
 
 window.addEventListener('mousemove', function (e) {
   movePos.push({
