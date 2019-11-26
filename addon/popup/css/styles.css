@@ -1,6 +1,6 @@
 body {
   width: 350px;
-  height: 500px;
+  height: 515px;
   font-family: helvetica;
   background-color: #f8f8f8;
   padding: 0px;
@@ -10,15 +10,14 @@ body {
 .title {
   display: flex;
   justify-content: center;
-  margin-top: 15px;
 }
 
 
 .logo1{
   position: absolute;
   z-index: 2;
+  top: 13px;
   left: calc(50% - 125px)
-
 }
 
 .logo2{
@@ -34,22 +33,31 @@ body {
 .buttons {
   display: flex;
   justify-content: space-around;
+  margin-top: 255px;
 
 }
 
 .button {
  text-decoration: none;
+ width: 75px;
+ height: 33px;
+ background-color: #6f7ab6;
+ color: white;
+ text-align: center;
+ font-size: 20px;
+ border-radius: 10px;
 }
 
 .previews {
   display: flex;
   justify-content: space-around;
-  background-color: #e6e7e8;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .preview {
-  width: 70px;
-  height: 80px;
-  background-color: #ffffff;
-  position: absolute;
+  width: 100px;
+  height: 155px;
+  background-color: #e6e7e8;
 }
