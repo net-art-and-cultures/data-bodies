@@ -1,74 +1,103 @@
 * {
-  margin: 3px;
-  padding: 2px;
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
 }
 
-.link {
-  fron-style: Bold
-}
-
-h4 {
+header{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  text-decoration-style: Bold;
-  font-family: 'helvetica', serif;
-  font-size: 25px;
-  height: 1px;
-  text-transform: uppercase;
-  letter-spacing: 5px;
 }
-
 
 .img-dblogo{
-  width: 120px;
-  background-position: center;
- }
+  width: 110px;
+  cursor: pointer;
+  margin-left: 20px;
+}
 
-
-.nav-links{
+.nav-links {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   position: relative;
   float: right;
   margin-top: 0px;
   font-family: 'helvetica', serif;
-  margin-right: 10px;
+  margin-right: 20px;
   width: 18%;
-  Height: 15px;
 }
 
-.nav-links li{
-list-style: none;
-
-
-}
 .nav-links a{
   text-decoration: none;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 13px;
   color: black;
-  height: 400px;
+  transition: all 0.3s ease 0;
+}
+.nav-links a:hover{
+  color: #85b5d6
+}
+
+h4 {
+  text-align: center;
+  text-decoration-style: Bold;
+  font-family: 'helvetica', serif;
+  font-size: 25px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
 }
 
 .container{
   width: 1280px;
-  min-height: 480px;
+  min-height: 680px;
   background: #FFF;
-  margin: 70px auto 0;
+  margin: 100px auto 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-.container .box {
+.box{
   position: relative;
   width: 400px;
   height: 400px;
-background: #FFD76C;
-margin: 10px;
-box-sizing: border-box;
-display: inline-block;
+  margin: 13px;
+  box-sizing: border-box;
+  display: inline-block;
+  background-color: #FFD76C;
+}
+.imgBox{
+  width: 400px;
+  height: 400px;
+  box-sizing: content-box;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+.imgBox>img{
+  max-width: 100%;
+  transition: transform 2s;
+}
+.box:hover .imgBox img
+{
+  transform: scale(1.2);
+}
+.details{
+  margin: 10px;
+  transform: scaleY(0);
+  transition: transform .5s;
+}
+.box:hover .details
+{
+  transform: scaleY(1);
+}
+
+.details .content h2
+{
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  font-size: 15px;
+  color: black;
+  font-family: 'helvetica', serif;
 }
