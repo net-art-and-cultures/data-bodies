@@ -1,0 +1,138 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img-dblogo{
+  width: 110px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  float: right;
+  margin-top: 1.5px;
+  font-family: 'helvetica', serif;
+  margin-right: 20px;
+  width: 18%;
+}
+
+.nav-links a{
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  transition: all 0.3s ease 0;
+}
+.nav-links a:hover{
+  color: #85b5d6
+}
+
+h4 {
+  text-align: center;
+  text-decoration-style: Bold;
+  font-family: 'helvetica', serif;
+  font-size: 25px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.container{
+  text-align: center;
+  width: 980px;
+  height:1350px;
+  background: #FFF;
+  margin: 60px 100px;
+  padding-left:300px;
+  padding-right:10px;
+
+}
+
+
+p {
+  font-size: 25px;
+  font-family: 'helvetica', serif;
+  line-height: 45px;
+}
+
+
+button {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button {
+  background: none;
+  color: #000;
+  width: 200px;
+  height: 60px;
+  border: 1px solid #000;
+  font-size: 18px;
+  border-radius: 4px;
+  transition: .6s;
+  overflow: hidden;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:before {
+  content: '';
+  display: block;
+  position: absolute;
+  background: #85b5d6;
+  width: 60px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: .5s;
+  filter: blur(30px);
+  transform: translateX(-130px) skewX(-15deg);
+}
+
+button:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background: #85b5d6;
+  width: 30px;
+  height: 100%;
+  left: 30px;
+  top: 0;
+  opacity: 0;
+  filter: blur(30px);
+  transform: translate(-100px) scaleX(-15deg);
+}
+
+button:hover {
+  background: #85b5d6;
+  cursor: pointer;
+}
+
+button:hover:before {
+  transform: translateX(300px) skewX(-15deg);
+  opacity: .6;
+  transition: .7s;
+
+}
+
+button:hover:after {
+  transform: translateX(300px) skewX(-15deg);
+  opacity: 1;
+  transition: .7s;
+
+}
