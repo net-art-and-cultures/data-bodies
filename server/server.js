@@ -1,16 +1,34 @@
+const fs = require('fs')
 const express = require('express')
+const app = express ()
+const port = process.argv[2] || 8000
+const bodyParser = require('body-parser')
+const multer = require('multer')
+const upload = multer({ dest: 'www/images' })
 
-const app = express()
-
-const port = Number(process.argv[2]) || 8000
-
-const staticFiles = express.static(`${__dirname}/www`)
-
+const staticFiles = express.static(`www`)
 app.use(staticFiles)
+app.use(bodyParser.json())
 
-app.post(/api/image-uploaded)
-app.get(/api/images)
+app.get('/api/profile-into', (reg, res) => {
+  const data = fs.readFileSync('profile-data.json')
+  const profile = JSON.parse(data)
+  res.json(profile)
+})
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}, CTRL + C to shutdown`)
+app.post('/api/update-profile',(req, res)) => {
+  const data = fs.readFileSync('profile-data.json')
+  const profile = JSON.parse(data)
+  profile.name = req.body.name
+  profile.into = req.body.info
+  fs.writeFileSync('profile-data.json', profile)
+  res.send('updated!')
+})
+
+app.post('/api/new-post', upload.single('pic'), (req, res) => {
+  res.send('updated!')
+})
+
+app.listen(port,() => {
+  console.log('listening on http://localhost:${port}, CTRL + C to quit')
 })
