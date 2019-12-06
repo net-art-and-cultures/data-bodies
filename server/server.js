@@ -21,11 +21,17 @@ app.post('/api/update-profile',(req, res)) => {
   const profile = JSON.parse(data)
   profile.name = req.body.name
   profile.into = req.body.info
-  fs.writeFileSync('profile-data.json', profile)
+  fs.writeFileSync('profile-data.json', JSON stringify(profile, null, 2))
   res.send('updated!')
 })
 
 app.post('/api/new-post', upload.single('pic'), (req, res) => {
+  console.log(req,file)
+  const data = fs.readFileSync('profile-data.json')
+  const profile = JSON.parse(data)
+  profile.posts.push('images/' + req.file.filename)
+  fs.writeFileSync('profile-data.json', JSON stringify(profile, null, 2))
+
   res.send('updated!')
 })
 
