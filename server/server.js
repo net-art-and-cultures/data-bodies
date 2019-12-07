@@ -1,40 +1,55 @@
-const fs = require('fs')
 const express = require('express')
-const app = express ()
+const bodyParser= require('body-parser')
+const multer = require('multer');
+app.use(bodyParser.urlencoded({extended: true}))
+
+const app = express()
 const port = process.argv[2] || 8000
-const bodyParser = require('body-parser')
-const multer = require('multer')
-const upload = multer({ dest: 'www/images' })
 
-const staticFiles = express.static(`www`)
-app.use(staticFiles)
-app.use(bodyParser.json())
+app.get('/',function(req,res){
+  res.sendFile(__dirname + '/index.html');
 
-app.get('/api/profile-into', (reg, res) => {
-  const data = fs.readFileSync('profile-data.json')
-  const profile = JSON.parse(data)
-  res.json(profile)
+});
+
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
 })
 
-app.post('/api/update-profile',(req, res)) => {
-  const data = fs.readFileSync('profile-data.json')
-  const profile = JSON.parse(data)
-  profile.name = req.body.name
-  profile.into = req.body.info
-  fs.writeFileSync('profile-data.json', JSON stringify(profile, null, 2))
-  res.send('updated!')
+var upload = multer({ storage: storage })
+
+app.post('/uploadmultiple', upload.array('myFiles', 12), (req, res, next) => {
+  const files = req.files
+  if (!files) {
+    const error = new Error('Please choose files')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+
+    res.send(files)
+
 })
 
-app.post('/api/new-post', upload.single('pic'), (req, res) => {
-  console.log(req,file)
-  const data = fs.readFileSync('profile-data.json')
-  const profile = JSON.parse(data)
-  profile.posts.push('images/' + req.file.filename)
-  fs.writeFileSync('profile-data.json', JSON stringify(profile, null, 2))
+app.post('/api/profile-info', (req, res) => {
+    var img = fs.readFileSync(req.file.path);
 
-  res.send('updated!')
+
+  })
 })
+
+app.get('/api/profile-info', (req, res) => {
+
+   if (err) return console.log(err)
+   res.send(imgArray)
+
+  })
+});
 
 app.listen(port,() => {
-  console.log('listening on http://localhost:${port}, CTRL + C to quit')
+  console.log('listening on http://localhost8000')
 })
