@@ -123,5 +123,15 @@
     </div>
   </div>
 
+  <script>
+
+    fetch('https://raw.githubusercontent.com/net-art-and-cultures/syllabus-and-notes/master/notes/img-test.json', { method: 'GET'})
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json.results[0].title)
+      })
+
+  </script>
+
 </body>
 </html>
