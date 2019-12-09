@@ -1,55 +1,44 @@
 const express = require('express')
-const bodyParser= require('body-parser')
-const multer = require('multer');
-app.use(bodyParser.urlencoded({extended: true}))
 
 const app = express()
-const port = process.argv[2] || 8000
 
-app.get('/',function(req,res){
-  res.sendFile(__dirname + '/index.html');
+const port = Number(process.argv[2]) || 8000
 
-});
+const staticFiles = express.static('${__dirname}www')
 
+const fs = require('fs')
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
-  }
+const multer = require('multer')
+const upload = multer({ dest; 'www/uploads/' })
+
+app.use(staticFiles)
+
+app.use((req, res, next)) => {
+  res.header('Acccess-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  res.header('Access-Control-Allow-Methods', 'GET, Post, PUT, DELETE, OPTIONS')
+  next()
 })
 
-var upload = multer({ storage: storage })
+app.post('/api/image-upload', uplpad.single('image'), (req, res) => {
 
-app.post('/uploadmultiple', upload.array('myFiles', 12), (req, res, next) => {
-  const files = req.files
-  if (!files) {
-    const error = new Error('Please choose files')
-    error.httpStatusCode = 400
-    return next(error)
-  }
-
-    res.send(files)
-
+  res.json({ message: 'ok' })
 })
 
-app.post('/api/profile-info', (req, res) => {
-    var img = fs.readFileSync(req.file.path);
 
-
+app.get('/api/images', (req, res) => {
+  fs.readdir('www/uploads', (err, files) => {
+    if (err) {
+      console.log('there was an error', err)
+    } else {
+      for (let i = 0; i < files.length; i++) {
+        files[i] = 'uploads/' + files[i]
+      }
+      res.json(files)
+    }
   })
 })
 
-app.get('/api/profile-info', (req, res) => {
-
-   if (err) return console.log(err)
-   res.send(imgArray)
-
-  })
-});
-
-app.listen(port,() => {
-  console.log('listening on http://localhost8000')
+app.listen(port, () => {
+  console.log('Server running at http://localhost:${port}, CTRL + to shutdown')
 })
