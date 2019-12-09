@@ -125,10 +125,26 @@
 
   <script>
 
+    const container = document.querySelector('.container')
+
+
+    function newPost(filepath){
+      const box = document.createElement('div')
+      box.className = 'box'
+      const img = document.createElement('img')
+      img.src = filepath
+      const ovr = document.createElement('div')
+      ovr.className = 'overlay'
+      ovr.textContent = //filepath
+      post.appendChild(img)
+      post.appendChild(ovr)
+      content.appendChild(box)
+    }
+
     fetch('https://raw.githubusercontent.com/net-art-and-cultures/syllabus-and-notes/master/notes/img-test.json', { method: 'GET'})
       .then((res) => res.json())
       .then((json) => {
-        console.log(json[0])
+        console.log(json[1])
       })
 
   </script>
