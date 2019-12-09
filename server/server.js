@@ -4,24 +4,23 @@ const app = express()
 
 const port = Number(process.argv[2]) || 8000
 
-const staticFiles = express.static('${__dirname}www')
+const staticFiles = express.static('${__dirname}/www')
 
 const fs = require('fs')
 
 const multer = require('multer')
-const upload = multer({ dest; 'www/uploads/' })
+const upload = multer({ dest: 'www/uploads/' })
 
 app.use(staticFiles)
 
-app.use((req, res, next)) => {
-  res.header('Acccess-Control-Allow-Origin', '*')
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  res.header('Access-Control-Allow-Methods', 'GET, Post, PUT, DELETE, OPTIONS')
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
   next()
 })
 
-app.post('/api/image-upload', uplpad.single('image'), (req, res) => {
-
+app.post('/api/image-upload', upload.single('image'), (req, res) => {
   res.json({ message: 'ok' })
 })
 
