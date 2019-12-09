@@ -1,71 +1,38 @@
+/* global browser */
+const runButton = document.querySelector('#run')
+
 function getActiveTab () {
   return browser.tabs.query({ active: true, currentWindow: true })
 }
 
-getActiveTab().then((tabs) => {
-  browser.tabs.sendMessage(
-    tabs[0].id,
-    { mode: 'check the mode' }
-  ).then(response => {
-    if (response.response === 'off') {
-      dataBodyOn()
-      // start the program, change button to "stop"
-    } else if (response.response === 'on') {
-      runButton.textContent = 'Stop'
-      dataBodyOff()
-      // stop the program, change button to "run"
-    }
-  })
+browser.runtime.onMessage.addListener(message => {
+  if (message.mode) {
+    runButton.textContent = 'Stop'
+  } else {
+    runButton.textContent = 'Run'
+  }
 })
 
-const runButton = document.querySelector('#run')
+getActiveTab().then((tabs) => {
+  browser.tabs.sendMessage(tabs[0].id, { type: 'get-status' })
+})
 
-function dataBodyOn () {
-  let isRunning = false
-  runButton.addEventListener('click', () => {
-    if (isRunning === false) {
-      runButton.textContent = 'Stop'
-      isRunning = true
-      getActiveTab().then((tabs) => {
-        browser.tabs.sendMessage(
-          tabs[0].id,
-          { message: 'start the program' }
-        )
+runButton.addEventListener('click', () => {
+  if (runButton.textContent === 'Run') {
+    getActiveTab().then((tabs) => {
+      browser.tabs.sendMessage(tabs[0].id, {
+        type: 'update',
+        running: true
       })
-    } else if (isRunning === true) {
-      runButton.textContent = 'Run'
-      isRunning = false
-      getActiveTab().then((tabs) => {
-        browser.tabs.sendMessage(
-          tabs[0].id,
-          { message: 'stop the program' }
-        )
+    })
+    runButton.textContent = 'Stop'
+  } else {
+    getActiveTab().then((tabs) => {
+      browser.tabs.sendMessage(tabs[0].id, {
+        type: 'update',
+        running: false
       })
-    }
-  })
-}
-
-function dataBodyOff () {
-  let isRunning = true
-  runButton.addEventListener('click', () => {
-    if (isRunning === true) {
-      runButton.textContent = 'Run'
-      isRunning = false
-      getActiveTab().then((tabs) => {
-        browser.tabs.sendMessage(
-          tabs[0].id,
-          { message: 'stop the program' }
-        )
-      })
-    } else if (isRunning === false) {
-      runButton.textContent = 'Stop'
-      isRunning = true
-      getActiveTab().then((tabs) => {
-        browser.tabs.sendMessage(
-          tabs[0].id,
-          { message: 'start the program' }
-        )
-      })
-    }
-  })
-}
+    })
+    runButton.textContent = 'Run'
+  }
+})
