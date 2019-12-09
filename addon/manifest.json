@@ -19,7 +19,7 @@
 
   "content_scripts": [
     {
-      "js": ["content-scripts/background-script.js"],
+      "js": ["content-scripts/content.js"],
       "matches": ["<all_urls>"]
     }
   ]
