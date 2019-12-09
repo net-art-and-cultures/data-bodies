@@ -4,7 +4,7 @@ const app = express()
 
 const port = Number(process.argv[2]) || 8000
 
-const staticFiles = express.static('${__dirname}/www')
+const staticFiles = express.static(`${__dirname}/www`)
 
 const fs = require('fs')
 
@@ -39,5 +39,5 @@ app.get('/api/images', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log('Server running at http://localhost:${port}, CTRL + to shutdown')
+  console.log(`Server running at http://localhost:${port}, CTRL + C to shutdown`)
 })
