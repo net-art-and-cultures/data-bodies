@@ -22,129 +22,36 @@
 
   <h4>Digital Gallery</h4>
 
-  <div class="container">
-    <div class="box">
-      <div class="imgBox">
-        <img src="img/img1.jpg">
-      </div>
-      <div class="details">
-        <div class="content">
-            <h2> Facebook | Duration </h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="imgBox">
-        <img src="img/img2.jpg">
-      </div>
-      <div class="details">
-        <div class="content">
-            <h2> Facebook | Duration </h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="imgBox">
-        <img src="img/img3.jpg">
-      </div>
-      <div class="details">
-        <div class="content">
-            <h2> Facebook | Duration </h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="imgBox">
-        <img src="img/img4.jpg">
-      </div>
-      <div class="details">
-        <div class="content">
-            <h2> Facebook | Duration </h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="imgBox">
-        <img src="img/img5.jpg">
-      </div>
-      <div class="details">
-        <div class="content">
-            <h2> Facebook | Duration </h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="imgBox">
-        <img src="img/img6.jpg">
-      </div>
-      <div class="details">
-        <div class="content">
-            <h2> Facebook | Duration </h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="imgBox">
-        <img src="img/img7.jpg">
-      </div>
-      <div class="details">
-        <div class="content">
-            <h2> Facebook | Duration </h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="imgBox">
-        <img src="img/img8.jpg">
-      </div>
-      <div class="details">
-        <div class="content">
-            <h2> Facebook | Duration </h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="imgBox">
-        <img src="img/img9.jpg">
-      </div>
-      <div class="details">
-        <div class="content">
-            <h2> Facebook | Duration </h2>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="container"></div>
 
   <script>
 
     const container = document.querySelector('.container')
 
-
-    function newPost(filepath){
+    function newPost(imgpath){
       const box = document.createElement('div')
       box.className = 'box'
+      const imgBox = document.createElement('div')
+      imgBox.className = 'imgBox'
+      box.appendChild(imgBox)
       const img = document.createElement('img')
-      img.src = filepath
-      const ovr = document.createElement('div')
-      ovr.className = 'overlay'
-      ovr.textContent = //filepath
-      post.appendChild(img)
-      post.appendChild(ovr)
-      content.appendChild(box)
+      img.className = 'img'
+      img.src = imgpath
+      imgBox.appendChild(img)
+      const details = document.createElement('div')
+      details.className = 'details'
+      details.textContent = 'TEXT DETAILS'
+      box.appendChild(details)
+      container.appendChild(box)
+
     }
 
-    fetch('https://raw.githubusercontent.com/net-art-and-cultures/syllabus-and-notes/master/notes/img-test.json', { method: 'GET'})
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json[1])
+    fetch('https://dog.ceo/api/breeds/image/random', { method: 'GET'})
+      .then(res => res.json())
+      .then(json => {
+        for (let i = 0; i < json.message.length; i++) {
+          newPost(json.message[i])
+        }
       })
 
   </script>
