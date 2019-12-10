@@ -88,7 +88,7 @@ saveButton.addEventListener('click', () => {
     const blob = dataURItoBlob(latest)
     const data = new FormData()
     data.append('image', blob)
-    fetch('http://localhost:8000/api/image-upload', { method: 'POST', body: data })
+    fetch('http://databodies.me/api/image-upload', { method: 'POST', body: data })
   })
 })
 
