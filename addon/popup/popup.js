@@ -13,6 +13,15 @@ browser.runtime.onMessage.addListener(message => {
   }
 })
 
+// Jason: Receive communication from browser window to generate portrait
+browser.runtime.onMessage.addListener(message => {
+  if (message.type === 'generate-finished') {
+    if (message.data !=== undefined) {
+      console.log(message.data)
+    }
+  }
+})
+
 getActiveTab().then((tabs) => {
   browser.tabs.sendMessage(tabs[0].id, { type: 'get-status' })
 })
@@ -34,5 +43,10 @@ runButton.addEventListener('click', () => {
       })
     })
     runButton.textContent = 'Run'
+
+    // Jason: Communicate with browser window to generate portrait
+    getActiveTab().then((tabs) => {
+      browser.tabs.sendMessage(tabs[0].id, { type: 'generate' })
+    })
   }
 })

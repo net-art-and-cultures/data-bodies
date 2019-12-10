@@ -66,6 +66,7 @@ function calcMaxHeight() {
   canvasHeight = map(maxHeight, 0, recordWidth, 0, canvasWidth)
 }
 
+// When receive generate message, send back portrait to popup window. 
 browser.runtime.onMessage.addListener (message => {
   if (message.type === 'generate') {
     clear()
