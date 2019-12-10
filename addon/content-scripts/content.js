@@ -8,11 +8,19 @@ browser.runtime.onMessage.addListener(message => {
     console.log(isRunning)
   } else if (message.type === 'get-status') {
     browser.runtime.sendMessage({ mode: isRunning })
+  } else if (message.type === 'generate') {           // Jason: Send recorded data
+    browser.runtime.sendMessage({
+      type: 'generate-finished',
+      recordedMove: movePos,
+      recordedClick: clickPos,
+      recordedWidth: recordWidth
+    })
   }
 })
 
 const movePos = []
 const clickPos = []
+const recordWidth = window.innerWidth // Jason: Record window witdh to calculate the size of the portrait
 
 window.addEventListener('mousemove', function (e) {
   if (isRunning) {
