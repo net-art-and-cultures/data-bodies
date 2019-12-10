@@ -46,11 +46,11 @@
 
     }
 
-    fetch('https://raw.githubusercontent.com/net-art-and-cultures/syllabus-and-notes/master/notes/img-test.json', { method: 'GET'})
+    fetch('/api/images', { method: 'GET'})
       .then(res => res.json())
       .then(json => {
-        for (let i = 0; i < json.message.length; i++) {
-          newPost(json.message[i])
+        for (let i = 0; i < json.length; i++) {
+          newPost(json[i])
         }
       })
 
