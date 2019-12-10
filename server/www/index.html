@@ -46,7 +46,7 @@
 
     }
 
-    fetch('https://dog.ceo/api/breeds/image/random', { method: 'GET'})
+    fetch('https://raw.githubusercontent.com/net-art-and-cultures/syllabus-and-notes/master/notes/img-test.json', { method: 'GET'})
       .then(res => res.json())
       .then(json => {
         for (let i = 0; i < json.message.length; i++) {
