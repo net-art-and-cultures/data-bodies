@@ -1,4 +1,10 @@
 {
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "data-bodies@databodies.net",
+      "strict_min_version": "45.0"
+    }
+  },
 
   "manifest_version": 2,
   "name": "Data Bodies",
@@ -19,9 +25,15 @@
 
   "content_scripts": [
     {
-      "js": ["content-scripts/background-script.js"],
+      "js": ["content-scripts/content.js"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+
+  "permissions": [
+    "<all_urls>",
+    "webRequest",
+    "storage",
+    "unlimitedStorage"]
 
 }
