@@ -1,4 +1,3 @@
-let dataURL
 let maxHeight
 let canvasWidth = 1200
 let canvasHeight
@@ -6,12 +5,20 @@ let canvasElement
 
 function setup() {
   pixelDensity(2)
-  calcMaxHeight()
   createCanvas(canvasWidth, 0)
   background(255)
 }
 
-function paint() {
+function paint(message) {
+  let movePos = message.recordedMove
+  let clickPos = message.recordedClick
+  let recordWidth = message.recordedWidth
+
+  clear()
+  calcMaxHeight(movePos,recordWidth)
+  resizeCanvas(canvasWidth, canvasHeight)
+  background(255)
+
   for (let m = 0; m < movePos.length-1; m++) {
     let mapPercent = map(m, 0, movePos.length, 0, 100)
     let r
@@ -53,7 +60,7 @@ function paint() {
   }
 }
 
-function calcMaxHeight() {
+function calcMaxHeight(movePos,recordWidth) {
   let maxY = 0
   for (let w = 0; w < movePos.length; w++) {
     if (movePos[w].y > maxY) {
@@ -63,14 +70,3 @@ function calcMaxHeight() {
   maxHeight = maxY
   canvasHeight = map(maxHeight, 0, recordWidth, 0, canvasWidth)
 }
-
-// When receive generate message, send back portrait to popup window. 
-// browser.runtime.onMessage.addListener (message => {
-//   if (message.type === 'generate') {
-//     clear()
-//     calcMaxHeight()
-//     resizeCanvas(canvasWidth, canvasHeight)
-//     background(255)
-//     paint()
-//     dataURL = canvasElement.toDataURL()
-// }

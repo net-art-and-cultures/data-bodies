@@ -1,25 +1,41 @@
 /* global browser */
 const runButton = document.querySelector('#run')
 
-let movePos
-let clickPos
-let recordWidth
-
 function getActiveTab () {
   return browser.tabs.query({ active: true, currentWindow: true })
 }
 
-function storePortrait () {
-  browser.storage.local.clear()
-  browser.storage.local.set({'portrait': dataURL})
+function storePortrait (dataURL) {
+  // browser.storage.local.clear()
+  // browser.storage.local.set({'portrait': dataURL})
   browser.storage.local.get('portrait')
     .then((res) => {
-      updateGallery(res)
+      let p = res.portrait
+      if (p instanceof Array) {
+        p.push(dataURL)
+      } else {
+        p = [dataURL]
+      }
+      browser.storage.local.set({'portrait': p})
+      updateGallery(p)
     })
 }
 
-function updateGallery (portraitInput) {
-  document.getElementById('preview-1').innerHTML = "<img src=" + portraitInput.portrait + ">"
+function updateGallery (portraits) {
+  let previews = document.querySelector('.previews')
+  previews.innerHTML = ''
+  for (var i = 0; i < portraits.length; i++) {
+    let preview = document.createElement('div')
+    preview.className = 'preview'
+    let img = document.createElement('img')
+    img.src = portraits[i]
+    // img.onclick = () => {
+    //   window.open('https://google.com')
+    // }
+    preview.appendChild(img)
+    previews.appendChild(preview)
+  }
+
 }
 
 browser.runtime.onMessage.addListener(message => {
@@ -29,17 +45,8 @@ browser.runtime.onMessage.addListener(message => {
     runButton.textContent = 'Run'
   }
   if (message.type === 'generate-finished') {
-    movePos = message.recordedMove
-    clickPos = message.recordedClick
-    recordWidth = message.recordedWidth
-    clear()
-    calcMaxHeight()
-    resizeCanvas(canvasWidth, canvasHeight)
-    background(255)
-    paint()
-    canvasElement = document.getElementById('defaultCanvas0')
-    dataURL = canvasElement.toDataURL()
-    storePortrait()
+    paint(message)
+    storePortrait(document.getElementById('defaultCanvas0').toDataURL())
   }
 })
 
@@ -74,5 +81,7 @@ runButton.addEventListener('click', () => {
 
 browser.storage.local.get('portrait')
   .then((res) => {
-    updateGallery(res)
+    if (res.portrait instanceof Array) {
+      updateGallery(res.portrait)
+    }
   })
