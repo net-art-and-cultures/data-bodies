@@ -1,8 +1,25 @@
 /* global browser */
 const runButton = document.querySelector('#run')
 
+let movePos
+let clickPos
+let recordWidth
+
 function getActiveTab () {
   return browser.tabs.query({ active: true, currentWindow: true })
+}
+
+function storePortrait () {
+  browser.storage.local.clear()
+  browser.storage.local.set({'portrait': dataURL})
+  browser.storage.local.get('portrait')
+    .then((res) => {
+      updateGallery(res)
+    })
+}
+
+function updateGallery (portraitInput) {
+  document.getElementById('preview-1').innerHTML = "<img src=" + portraitInput.portrait + ">"
 }
 
 browser.runtime.onMessage.addListener(message => {
@@ -11,14 +28,18 @@ browser.runtime.onMessage.addListener(message => {
   } else {
     runButton.textContent = 'Run'
   }
-})
-
-// Jason: Receive communication from browser window to generate portrait
-browser.runtime.onMessage.addListener(message => {
   if (message.type === 'generate-finished') {
-    if (message.data !=== undefined) {
-      console.log(message.data)
-    }
+    movePos = message.recordedMove
+    clickPos = message.recordedClick
+    recordWidth = message.recordedWidth
+    clear()
+    calcMaxHeight()
+    resizeCanvas(canvasWidth, canvasHeight)
+    background(255)
+    paint()
+    canvasElement = document.getElementById('defaultCanvas0')
+    dataURL = canvasElement.toDataURL()
+    storePortrait()
   }
 })
 
@@ -50,3 +71,8 @@ runButton.addEventListener('click', () => {
     })
   }
 })
+
+browser.storage.local.get('portrait')
+  .then((res) => {
+    updateGallery(res)
+  })

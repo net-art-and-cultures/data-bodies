@@ -8,6 +8,10 @@ body {
   margin: 0px;
 }
 
+canvas {
+  display: none;
+}
+
 .title {
   letter-spacing: 2.5px;
   display: flex;
@@ -67,4 +71,9 @@ body {
   width: 100px;
   height: 155px;
   background-color: #e6e7e8;
+  text-align: center;
+}
+
+.preview img {
+  height: 100%
 }

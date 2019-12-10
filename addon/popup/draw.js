@@ -9,8 +9,6 @@ function setup() {
   calcMaxHeight()
   createCanvas(canvasWidth, 0)
   background(255)
-  canvasElement = document.getElementById('defaultCanvas0')
-  canvasElement.style.display = 'none';
 }
 
 function paint() {
@@ -67,17 +65,12 @@ function calcMaxHeight() {
 }
 
 // When receive generate message, send back portrait to popup window. 
-browser.runtime.onMessage.addListener (message => {
-  if (message.type === 'generate') {
-    clear()
-    calcMaxHeight()
-    resizeCanvas(canvasWidth, canvasHeight)
-    background(255)
-    paint()
-    dataURL = canvasElement.toDataURL()
-    browser.runtime.sendMessage.({
-      type: 'generate-finished',
-      data: dataURL
-    })
-  }
-}
+// browser.runtime.onMessage.addListener (message => {
+//   if (message.type === 'generate') {
+//     clear()
+//     calcMaxHeight()
+//     resizeCanvas(canvasWidth, canvasHeight)
+//     background(255)
+//     paint()
+//     dataURL = canvasElement.toDataURL()
+// }
