@@ -51,7 +51,7 @@ h4 {
 .container{
   /* align-self: center; */
   text-align: left;
-  width: 980px;
+  width: 1090px;
   height:1350px;
   background: #FFF;
   margin: 60px 100px;
@@ -63,4 +63,5 @@ h4 {
 p {
   font-size: 18px;
   font-family: 'helvetica', serif;
+  line-height: 30px;
 }
