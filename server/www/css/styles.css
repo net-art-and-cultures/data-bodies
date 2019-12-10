@@ -92,6 +92,8 @@ h4 {
   margin: 2px;
   transform: scaleY(0);
   transition: transform .5s;
+  text-align: center;
+  font-family: helvetica, sans-serif;
 }
 
 .box:hover .details
