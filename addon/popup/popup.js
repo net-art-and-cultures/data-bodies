@@ -1,6 +1,11 @@
 /* global browser */
 const runButton = document.querySelector('#run')
 const saveButton = document.querySelector('#save')
+const logo = document.querySelector('#logo')
+
+logo.addEventListener('click', () => {
+  window.open('http://databodies.me')
+})
 
   // we got this from https://stackoverflow.com/a/12300351/12146405
 
@@ -88,7 +93,7 @@ saveButton.addEventListener('click', () => {
     const blob = dataURItoBlob(latest)
     const data = new FormData()
     data.append('image', blob)
-    fetch('http://localhost:8000/api/image-upload', { method: 'POST', body: data })
+    fetch('http://databodies.me/api/image-upload', { method: 'POST', body: data })
   })
 })
 
