@@ -1,6 +1,11 @@
 /* global browser */
 const runButton = document.querySelector('#run')
 const saveButton = document.querySelector('#save')
+const logo = document.querySelector('#logo')
+
+logo.addEventListener('click', () => {
+  window.open('http://databodies.me')
+})
 
   // we got this from https://stackoverflow.com/a/12300351/12146405
 
