@@ -13,6 +13,7 @@ browser.runtime.onMessage.addListener(message => {
 
 const movePos = []
 const clickPos = []
+const recordWidth = window.innerWidth // Jason: Record window witdh to calculate the size of the portrait
 
 window.addEventListener('mousemove', function (e) {
   if (isRunning) {
